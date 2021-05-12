@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/eejdan/CSB-A/issues"
   },
-  "homepage": "https://github.com/eejdan/CSB-A#readme"
+  "homepage": "https://github.com/eejdan/CSB-A#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.2",
+    "mysql": "^2.18.1"
+  }
 }
