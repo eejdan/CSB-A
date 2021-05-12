@@ -1,7 +1,6 @@
 console.log("Concurs Severin Bumbaru - Echipa Agape si Metanoia 2021C")
 require('dotenv').config();
 
-
 const express = require('express');
 const cookieParser = require('cookie-parser');
 
@@ -22,12 +21,20 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(cookieParser(process.env.COOKIEPASS))
 
+app.use()
+
 app.get('/', (req, res) => {
     return res.render('index');
 });
 
-app.get('/login', (req,res) => {
+app.get('/login', (req, res) => {
     return res.render('login');
 });
+
+app.get('/transurb', (req, res) => {
+
+})
+
+
 
 app.listen(3030, () => { console.log("Listening");})
