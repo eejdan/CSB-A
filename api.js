@@ -40,8 +40,12 @@ async function updateTransurb() {
                     build[build.length] = currentFinds[currentFinds.length-1]+'';
                 }
             })
+            let semibuild = {};
             // console.log(build);
             let finalbuild = {};
+            build.forEach(trsHandle => {
+                semibuild[trsHandle+''] = { 'tur': {}, 'retur': {} }
+            })
             build.forEach(trsHandle => {
                 let trsoptions = options;
                 trsoptions.uri = `https://transurbgalati.ro/trs-${trsHandle}`
@@ -49,9 +53,22 @@ async function updateTransurb() {
                     let xdom = new jsdom.JSDOM(xhtml);
                     let xlinks = (xdom.window.document).querySelectorAll('.entry-content a');
                     xlinks.forEach(unit => {
-                       // console.log(unit.outerHTML);
+                        console.log(unit.outerHTML)//semibuild[trsHandle+'']
+                        unit.getAttribute('href');
                     })
-                })
+                    console.log(trsHandle);
+                }).catch(err => {
+                    trsoptions.uri = `https://transurbgalati.ro/statii-traseul-${trsHandle}`
+                    rp(trsoptions).then(xhtml => {
+                        let xdom = new jsdom.JSDOM(xhtml);
+                        let xlinks = (xdom.window.document).querySelectorAll('.entry-content a');
+                        xlinks.forEach(unit => {
+                            console.log(unit);
+//
+                        // console.log(unit.outerHTML);
+                        })
+                    })
+                });
             })
             
             resolve(finalbuild)
